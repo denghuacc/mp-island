@@ -1,0 +1,6 @@
+<v-like
+  isLike="{{ classic.like_status === 0 ? false: true }}"
+  count="{{ classic.fav_nums }}"
+  bind:like="onLike"
+/>
+<v-movie imgSrc="{{ classic.image }}" content="{{ classic.content }}"/>

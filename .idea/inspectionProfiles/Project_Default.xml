@@ -5,7 +5,6 @@
     <inspection_tool class="CssInvalidPropertyValue" enabled="true" level="ERROR" enabled_by_default="true">
       <scope name="Project Files" level="WEAK WARNING" enabled="true" />
     </inspection_tool>
-    <inspection_tool class="Eslint" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="INFORMATION" enabled_by_default="true">
       <option name="myValues">
         <value>

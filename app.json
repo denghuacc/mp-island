@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/classic/index"
+    "pages/classic/classic"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
