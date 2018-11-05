@@ -1,5 +1,5 @@
-import {getLatest} from '../../models/classic'
-import {like} from '../../models/like'
+import { getClassic, getLatest, isFirst, isLatest } from '../../models/classic'
+import { getClassicLikeStatus, like } from '../../models/like'
 
 Page({
 
@@ -7,7 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    classic: {}
+    classic: {},
+    isFirst: false,
+    isLatest: true,
+    likeStatus: 0,
+    likeCount: 0
   },
 
   onLike(e) {
@@ -16,14 +20,41 @@ Page({
     like(behavior, this.data.classic.id, this.data.classic.type)
   },
 
+  onPrevious() {
+    this._updateClassic('previous')
+  },
+  onNext() {
+    this._updateClassic('next')
+  },
+
+  _updateClassic(nextOrPrevious) {
+    getClassic(this.data.classic.index, nextOrPrevious, data => {
+      this._getLikeStatus(data.id, data.type)
+      this.setData({
+        classic: data,
+        isLatest: isLatest(data.index),
+        isFirst: isFirst(data.index)
+      })
+    })
+  },
+
+  _getLikeStatus(artId, category) {
+    getClassicLikeStatus(artId, category, data => {
+      this.setData({
+        likeStatus: data.like_status,
+        likeCount: data.fav_nums
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     getLatest(data => {
-      console.log(data)
       this.setData({
-        classic: data
+        classic: data,
+        likeStatus: data.like_status,
+        likeCount: data.fav_nums
       })
     })
 

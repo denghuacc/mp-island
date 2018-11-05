@@ -1,12 +1,39 @@
 {
   "pages": [
-    "pages/classic/classic"
+    "pages/classic/classic",
+    "pages/book/book",
+    "pages/my/my"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "小程序",
+    "navigationBarTitleText": "风华独醉",
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#c7c7c7",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "text": "流行",
+        "pagePath": "pages/classic/classic",
+        "iconPath": "images/tab/classic.png",
+        "selectedIconPath": "images/tab/classic@highlight.png"
+      },
+      {
+        "text": "书籍",
+        "pagePath": "pages/book/book",
+        "iconPath": "images/tab/book.png",
+        "selectedIconPath": "images/tab/book@highlight.png"
+      },
+      {
+        "text": "喜欢",
+        "pagePath": "pages/my/my",
+        "iconPath": "images/tab/my.png",
+        "selectedIconPath": "images/tab/my@highlight.png"
+      }
+    ]
   }
 }

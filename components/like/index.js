@@ -17,7 +17,7 @@ Component({
    */
   data: {
     likePng: 'images/like.png',
-    disLikePng: 'images/like_dis.png',
+    disLikePng: 'images/like@dis.png'
   },
 
   /**

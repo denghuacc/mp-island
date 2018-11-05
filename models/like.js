@@ -12,3 +12,10 @@ export const like = (behavior, artId, category) => {
     }
   })
 }
+
+export const getClassicLikeStatus = (artId, category, cb) => {
+  request({
+    url: `/classic/${category}/${artId}/favor`,
+    success: data => cb(data)
+  })
+}
