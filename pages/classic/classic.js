@@ -21,64 +21,62 @@ Component({
     likeCount: 0
   },
 
-  attached(options) {
+  async attached(options) {
     const cid = this.properties.cid
     const type = this.properties.type
     console.log(cid, type)
     if (!cid) {
-      classicModel.getLatest().then(res => {
-        this.setData({
-          classic: res.data,
-          likeCount: res.data.fav_nums,
-          likeStatus: res.data.like_status
-        })
+      const classic = await classicModel.getLatest()
+      this.setData({
+        classic: classic.data,
+        likeCount: classic.data.fav_nums,
+        likeStatus: classic.data.like_status
       })
     } else {
-      classicModel.getById(cid, type).then(res => {
-        this._getLikeStatus(res.data.id, res.data.type)
-        this.setData({
-          classic: res.data,
-          latest: classicModel.isLatest(res.data.index),
-          first: classicModel.isFirst(res.data.index)
-        })
+      const classic = await classicModel.getById(cid, type)
+      this._getLikeStatus(classic.data.id, classic.data.type)
+      this.setData({
+        classic: classic.data,
+        latest: classicModel.isLatest(classic.data.index),
+        first: classicModel.isFirst(classic.data.index)
       })
     }
   },
 
   methods: {
-    onLike(e) {
+    async onLike(e) {
       const behavior = e.detail.behavior
-      likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
+      await likeModel.like(
+        behavior,
+        this.data.classic.id,
+        this.data.classic.type
+      )
     },
 
-    onPrevious() {
-      this._updateClassic('previous')
+    async onPrevious() {
+      await this._updateClassic('previous')
     },
 
-    onNext() {
-      this._updateClassic('next')
+    async onNext() {
+      await this._updateClassic('next')
     },
 
-    _updateClassic(nextOrPrevious) {
+    async _updateClassic(nextOrPrevious) {
       const index = this.data.classic.index
-      const classic = classicModel.getClassic(index, nextOrPrevious)
-      classic.then(res => {
-        this._getLikeStatus(res.data.id, res.data.type)
-        this.setData({
-          classic: res.data,
-          isLatest: classicModel.isLatest(res.data.index),
-          isFirst: classicModel.isFirst(res.data.index)
-        })
+      const classic = await classicModel.getClassic(index, nextOrPrevious)
+      this._getLikeStatus(classic.data.id, classic.data.type)
+      this.setData({
+        classic: classic.data,
+        isLatest: classicModel.isLatest(classic.data.index),
+        isFirst: classicModel.isFirst(classic.data.index)
       })
     },
 
-    _getLikeStatus(artId, category) {
-      const status = likeModel.getClassicLikeStatus(artId, category)
-      status.then(res => {
-        this.setData({
-          likeStatus: res.data.like_status,
-          likeCount: res.data.fav_nums
-        })
+    async _getLikeStatus(artId, category) {
+      const status = await likeModel.getClassicLikeStatus(artId, category)
+      this.setData({
+        likeStatus: status.data.like_status,
+        likeCount: status.data.fav_nums
       })
     }
   }

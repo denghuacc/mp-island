@@ -1,33 +1,35 @@
 import { Http } from '../utils/http'
 
 class ClassicModel extends Http {
-  getLatest() {
-    const latest = this.request({ url: '/classic/latest' })
-    latest.then(res => {
-      console.log(res.data)
-      const index = res.data.index
-      this._saveLatestIndex(index)
-      const key = this._getKey(index)
-      wx.setStorageSync(key, res.data.data)
-    })
+  async getLatest() {
+    const latest = await this.request({ url: '/classic/latest' })
+    console.log(latest)
+    const index = latest.data.index
+    this._saveLatestIndex(index)
+    const key = this._getKey(index)
+    wx.setStorageSync(key, latest.data.data)
     return latest
   }
 
-  
-
-  getClassic(index, nextOrPrevious) {
+  async getClassic(index, nextOrPrevious) {
     const key =
       nextOrPrevious === 'next'
         ? this._getKey(index + 1)
         : this._getKey(index - 1)
     let classic = wx.getStorageSync(key)
     if (!classic) {
-      classic = this.request({ url: `/classic/${index}/${nextOrPrevious}` })
-      classic.then(res => {
-        wx.setStorageSync(this._getKey(res.data.index), res)
+      classic = await this.request({
+        url: `/classic/${index}/${nextOrPrevious}`
       })
+      wx.setStorageSync(this._getKey(classic.data.index), classic)
     }
-    return Promise.resolve(classic)
+    return classic
+  }
+
+  getById(cid, type, success) {
+    return this.request({
+      url: `classic/${type}/${cid}`
+    })
   }
 
   isFirst(index) {

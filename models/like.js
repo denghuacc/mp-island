@@ -4,7 +4,7 @@ class LikeModel extends Http {
   like(behavior, artId, category) {
     let url = behavior === 'like' ? '/like' : '/like/cancel'
 
-    this.request({
+    return this.request({
       url,
       method: 'POST',
       data: {
