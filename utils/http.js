@@ -1,45 +1,70 @@
-import config from '../config'
+import { Base64 } from 'js-base64'
+import { Token } from '../models/token'
+import { config } from '../config'
 
-const tip = {
-  1: '抱歉，出现了一个错误！',
-  1005: 'appkey错误，请去网站申请！',
-  3000: '期刊错误'
-}
+const tips = new Map()
+tips.set(1, '抱歉，出现了一个错误！')
 
-const show_error = (error_code = 1) => {
-  return wx.showToast({
-    title: tip[error_code],
-    icon: 'none',
-    duration: 2000
-  })
-}
+class Http {
+  request({ url, data = {}, method = 'GET' }) {
+    return new Promise((resolve, reject) => {
+      this._request(url, resolve, reject, data, method)
+    })
+  }
 
-
-export const request = params => {
-  const {
-    url, method = 'GET', data = '', success = () => {
-    }
-  } = params
-  wx.request({
-    url: config.api_base_url + url,
-    method: method,
-    data: data,
-    headers: {
-      'content-type': 'application/json',
-      'appkey': config.appkey
-    },
-    success: res => {
-      const codeStr = res.statusCode.toString()
-      if (codeStr.startsWith('2')) {
-        success(res.data)
-      } else {
-        const error_code = res.data.error_code
-        show_error(error_code)
+  _request(url, resolve, reject, data = {}, method = 'GET', noRefetch = false) {
+    wx.request({
+      url: config.api_base_url + url,
+      method: method,
+      data: data,
+      header: {
+        'content-type': 'application/json',
+        Authorization: this._encode()
+      },
+      success: res => {
+        const codeStr = res.statusCode.toString()
+        if (codeStr.startsWith('2')) {
+          resolve(res.data)
+        } else {
+          if (codeStr === '403') {
+            if (!noRefetch) {
+              this._refresh(url, resolve, reject, data, method)
+            }
+          } else {
+            reject()
+            const error_code = res.data.error_code
+            this._show_error(error_code)
+          }
+        }
+      },
+      fail: err => {
+        reject()
+        this._show_error('1')
       }
-    },
-    fail: err => {
-      show_error('1')
-    }
-  })
+    })
+  }
+
+  _show_error(error_code = 1) {
+    const tip = tips[error_code]
+    return wx.showToast({
+      title: tip ? tip : tips[error_code],
+      icon: 'none',
+      duration: 2000
+    })
+  }
+
+  _encode() {
+    const token = wx.getStorageSync('token')
+    const result = Base64.encode(token + ':')
+    return 'Basic ' + result
+  }
+
+  _refresh(...param) {
+    const token = new Token()
+    token.getTokenFromServer(token => {
+      this._request(...param, true)
+    })
+  }
 }
 
+export { Http }

@@ -10,7 +10,8 @@ Component({
    */
   behaviors: [classicBehavior],
   properties: {
-    musicUrl: String
+    musicUrl: String,
+    title: String
   },
 
   /**
@@ -32,6 +33,7 @@ Component({
           isPlay: true
         })
         musicManager.src = this.properties.musicUrl
+        musicManager.title = this.properties.title
       } else {
         this.setData({
           isPlay: false

@@ -1,21 +1,22 @@
-import { request } from '../utils/http'
+import { Http } from '../utils/http'
 
-export const like = (behavior, artId, category) => {
-  let url = behavior === 'like' ? '/like' : '/like/cancel'
+class LikeModel extends Http {
+  like(behavior, artId, category) {
+    let url = behavior === 'like' ? '/like' : '/like/cancel'
 
-  request({
-    url,
-    method: 'POST',
-    data: {
-      art_id: artId,
-      type: category
-    }
-  })
+    this.request({
+      url,
+      method: 'POST',
+      data: {
+        art_id: artId,
+        type: category
+      }
+    })
+  }
+
+  getClassicLikeStatus(artId, category, cd) {
+    return this.request({ url: `/classic/${category}/${artId}/favor` })
+  }
 }
 
-export const getClassicLikeStatus = (artId, category, cb) => {
-  request({
-    url: `/classic/${category}/${artId}/favor`,
-    success: data => cb(data)
-  })
-}
+export { LikeModel }

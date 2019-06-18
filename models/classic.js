@@ -1,42 +1,56 @@
-import { request } from '../utils/http'
+import { Http } from '../utils/http'
 
-export const getLatest = cb => {
-  request({
-    url: '/classic/latest',
-    success: data => {
-      cb(data)
-      saveLatestIndex(data.index)
-      wx.setStorageSync(setKey(data.index), data)
-    }
-  })
-}
-
-export const getClassic = (index, nextOrPrevious, cb) => {
-  const newIndex = nextOrPrevious === 'next' ? index + 1 : index - 1
-  const key = setKey(newIndex)
-  const storage = wx.getStorageSync(key)
-  if (!storage) {
-    request({
-      url: `/classic/${index}/${nextOrPrevious}`,
-      success: data => {
-        cb(data)
-        wx.setStorageSync(setKey(data.index), data)
-      }
+class ClassicModel extends Http {
+  getLatest() {
+    const latest = this.request({ url: '/classic/latest' })
+    latest.then(res => {
+      console.log(res.data)
+      const index = res.data.index
+      this._saveLatestIndex(index)
+      const key = this._getKey(index)
+      wx.setStorageSync(key, res.data.data)
     })
-  } else {
-    cb(storage)
+    return latest
+  }
+
+  
+
+  getClassic(index, nextOrPrevious) {
+    const key =
+      nextOrPrevious === 'next'
+        ? this._getKey(index + 1)
+        : this._getKey(index - 1)
+    let classic = wx.getStorageSync(key)
+    if (!classic) {
+      classic = this.request({ url: `/classic/${index}/${nextOrPrevious}` })
+      classic.then(res => {
+        wx.setStorageSync(this._getKey(res.data.index), res)
+      })
+    }
+    return Promise.resolve(classic)
+  }
+
+  isFirst(index) {
+    return index === 1
+  }
+
+  isLatest(index) {
+    const latestIndex = this._getLastIndex()
+    return index === latestIndex
+  }
+
+  _getLastIndex() {
+    return wx.getStorageSync('latestIndex')
+  }
+
+  _saveLatestIndex(index) {
+    wx.setStorageSync('latestIndex', index)
+  }
+
+  _getKey(index) {
+    const key = 'classic-' + index
+    return key
   }
 }
 
-export const isFirst = index => index === 1
-
-export const isLatest = index => {
-  const latestIndex = getLastIndex()
-  return index === latestIndex
-}
-
-const saveLatestIndex = index => wx.setStorageSync('latestIndex', index)
-
-const getLastIndex = () => wx.getStorageSync('latestIndex')
-
-const setKey = index => 'classic-' + index
+export { ClassicModel }

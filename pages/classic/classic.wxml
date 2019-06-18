@@ -1,40 +1,30 @@
 <view class="container">
   <view class="header">
-    <v-episode
-      class="epsoide"
-      index="{{ classic.index }}"
-    />
-    <v-like
-      class="like" isLike="{{ likeStatus === 0 ? false: true }}"
-      count="{{ likeCount }}"
-      bind:like="onLike"
-    />
+    <v-episode class="epsoide" index="{{classic.index}}" />
+    <v-like class="like" isLike="{{likeStatus}}" count="{{likeCount}}" bind:like="onLike" />
   </view>
-
   <v-movie
-    hidden="{{ classic.type !== 100 }}"
-    imgSrc="{{ classic.image }}"
-    content="{{ classic.content }}"
+    hidden="{{classic.type !== 100}}"
+    imgSrc="{{classic.image}}"
+    content="{{classic.content}}"
   />
-
   <v-music
-    wx:if="{{ classic.type === 200 }}"
-    imgSrc="{{ classic.image }}"
-    content="{{ classic.content }}"
-    musicUrl="{{ classic.url }}"
+    wx:if="{{classic.type === 200}}"
+    imgSrc="{{classic.image}}"
+    content="{{classic.content}}"
+    musicUrl="{{classic.url}}"
+    title="{{classic.title}}"
   />
-
   <v-essay
-    hidden="{{ classic.type !== 300 }}"
-    imgSrc="{{ classic.image }}"
-    content="{{ classic.content }}"
+    hidden="{{classic.type !== 300}}"
+    imgSrc="{{classic.image}}"
+    content="{{classic.content}}"
   />
-
   <v-navi
     class="navi"
-    isFirst="{{ isFirst }}"
-    isLatest="{{ isLatest }}"
-    title="{{ classic.title }}"
+    isFirst="{{isFirst}}"
+    isLatest="{{isLatest}}"
+    title="{{classic.title}}"
     bind:left="onNext"
     bind:right="onPrevious"
   />

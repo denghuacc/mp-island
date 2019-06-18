@@ -10,7 +10,7 @@
   width: 422rpx;
   height: 422rpx;
   margin-top: 60rpx;
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .player-img {
