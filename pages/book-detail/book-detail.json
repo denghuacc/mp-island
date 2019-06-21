@@ -2,6 +2,7 @@
   "usingComponents": {
     "v-tag": "/components/tag/index",
     "v-like": "/components/like/index",
-    "v-mask": "/components/mask/index"
+    "v-mask": "/components/mask/index",
+    "v-image-button": "/components/image-button/index"
   }
 }

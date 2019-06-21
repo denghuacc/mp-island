@@ -72,7 +72,7 @@ Page({
       return
     }
 
-    const result = await bookModel.postComment(this.data.book.id, comment)
+    const result = await bookModel.postBookComment(this.data.book.id, comment)
     wx.showToast({
       title: '+1',
       icon: 'none'

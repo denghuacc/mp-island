@@ -132,11 +132,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-right: 20rpx;
 }
 
 .like {
-  margin-right: 30rpx;
   margin-top: 10rpx;
+}
+
+.share-btn {
+  margin-top: 20rpx;
+}
+
+.share {
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .posting-container {
