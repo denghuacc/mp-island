@@ -19,13 +19,7 @@ class BookModel extends Http {
     })
   }
 
-  getBookLikeStatus(bookId) {
-    return this.request({
-      url: `/book/${bookId}/favor`
-    })
-  }
-
-  postComment(bookId, comment) {
+  postBookComment(bookId, comment) {
     return this.request({
       url: '/book/add/short_comment',
       method: 'POST',
@@ -35,6 +29,17 @@ class BookModel extends Http {
       }
     })
   }
+
+  getMyFavoriteBookCount() {
+    return this.request({url: '/book/favor/count'})
+  }
+
+  getBookLikeStatus(bookId) {
+    return this.request({
+      url: `/book/${bookId}/favor`
+    })
+  }
+
 
   searchBook(keyword, start) {
     return this.request({

@@ -25,9 +25,13 @@ class ClassicModel extends Http {
     return classic
   }
 
+  getMyFavoriteClassic() {
+    return this.request({ url: '/classic/favor' })
+  }
+
   getById(cid, type, success) {
     return this.request({
-      url: `classic/${type}/${cid}`
+      url: `/classic/${type}/${cid}`
     })
   }
 

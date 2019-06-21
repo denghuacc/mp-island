@@ -50,7 +50,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -64,6 +64,12 @@
 					"name": "book-detail",
 					"pathName": "pages/book-detail/book-detail",
 					"query": "bookId=7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
 					"scene": null
 				}
 			]
