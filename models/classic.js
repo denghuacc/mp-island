@@ -3,7 +3,6 @@ import { Http } from '../utils/http'
 class ClassicModel extends Http {
   async getLatest() {
     const latest = await this.request({ url: '/classic/latest' })
-    console.log(latest)
     const index = latest.data.index
     this._saveLatestIndex(index)
     const key = this._getKey(index)

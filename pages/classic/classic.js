@@ -24,7 +24,6 @@ Component({
   async attached(options) {
     const cid = this.properties.cid
     const type = this.properties.type
-    console.log(cid, type)
     if (!cid) {
       const classic = await classicModel.getLatest()
       this.setData({

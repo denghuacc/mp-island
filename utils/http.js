@@ -2,8 +2,9 @@ import { Base64 } from 'js-base64'
 import { Token } from '../models/token'
 import { config } from '../config'
 
-const tips = new Map()
-tips.set(1, '抱歉，出现了一个错误！')
+const tips = {
+  1: '抱歉，出现了一个错误！'
+}
 
 class Http {
   request({ url, data = {}, method = 'GET' }) {
@@ -22,11 +23,11 @@ class Http {
         Authorization: this._encode()
       },
       success: res => {
-        const codeStr = res.statusCode.toString()
-        if (codeStr.startsWith('2')) {
+        const code = res.statusCode.toString()
+        if (code.startsWith('2')) {
           resolve(res.data)
         } else {
-          if (codeStr === '403') {
+          if (code === '403') {
             if (!noRefetch) {
               this._refresh(url, resolve, reject, data, method)
             }
@@ -39,7 +40,7 @@ class Http {
       },
       fail: err => {
         reject()
-        this._show_error('1')
+        this._show_error(1)
       }
     })
   }
@@ -47,7 +48,7 @@ class Http {
   _show_error(error_code = 1) {
     const tip = tips[error_code]
     return wx.showToast({
-      title: tip ? tip : tips[error_code],
+      title: tip ? tip : tips['1'],
       icon: 'none',
       duration: 2000
     })
