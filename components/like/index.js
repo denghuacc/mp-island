@@ -9,6 +9,10 @@ Component({
     },
     count: {
       type: Number
+    },
+    readOnly: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -25,6 +29,9 @@ Component({
    */
   methods: {
     onLike() {
+      if (this.data.readOnly) {
+        return
+      }
       const count = this.properties.count
       const isLike = this.properties.isLike
       const newCount = isLike ? count - 1 : count + 1
@@ -33,9 +40,13 @@ Component({
         isLike: !isLike
       })
       let behavior = isLike ? 'cancel' : 'like'
-      this.triggerEvent('like', {
-        behavior
-      }, {})
+      this.triggerEvent(
+        'like',
+        {
+          behavior
+        },
+        {}
+      )
     }
   }
 })
