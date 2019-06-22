@@ -5,16 +5,16 @@
       <image class="icon" src="./images/search.png"></image>
       <input
         type="text"
-        bindconfirm="goSearching"
+        bindconfirm="goToSearching"
         value="{{keyword}}"
         placeholder="请输入书籍名"
         placeholder-class="in-bar"
         class="bar"
         auto-focus="true"
       />
-      <image src="./images/cancel.png" class="delete-img" bind:tap="onDelete"></image>
+      <image src="./images/cancel.png" class="delete-img" bind:tap="handleDelete"></image>
     </view>
-    <view class="cancel" bind:tap="onCancel">取消</view>
+    <view class="cancel" bind:tap="handleCancel">取消</view>
   </view>
 
   <view wx:if="{{!hasSearch}}">
@@ -25,7 +25,7 @@
       </view>
       <view class="tags">
         <block wx:for="{{historyWords}}" wx:key="item">
-          <v-tag text="{{item}}" bind:tapping="goSearching" />
+          <v-tag text="{{item}}" bind:tapping="goToSearching" />
         </block>
       </view>
     </view>
@@ -36,7 +36,7 @@
       </view>
       <view class="tags">
         <block wx:for="{{hotWords}}" wx:key="item">
-          <v-tag text="{{item}}" bind:tapping="goSearching" />
+          <v-tag text="{{item}}" bind:tapping="goToSearching" />
         </block>
       </view>
     </view>

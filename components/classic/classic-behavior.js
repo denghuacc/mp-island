@@ -3,5 +3,5 @@ export let classicBehavior = Behavior({
     imgSrc: String,
     content: String,
     hidden: Boolean
-  },
+  }
 })

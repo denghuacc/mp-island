@@ -6,6 +6,7 @@ class Token {
     this.tokenUrl = config.api_base_url + '/token'
   }
 
+  // 验证 token
   verify() {
     const token = wx.getStorageSync('token')
     if (!token) {
@@ -32,6 +33,7 @@ class Token {
     })
   }
 
+  // 从服务端获取 token
   getTokenFromServer(cb) {
     const that = this
     wx.login({
@@ -45,7 +47,7 @@ class Token {
           },
           success: res => {
             wx.setStorageSync('token', res.data.data.token)
-            cb && cb(res.data.data.token)
+            cb && cb(res.data.data.token) // 请求成功后回调
           }
         })
     })

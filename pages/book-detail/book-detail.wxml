@@ -46,30 +46,34 @@
   </view>
 </view>
 <view class="post-container" hidden="{{showPost}}">
-  <view class="post-fake" bind:tap="onFakePost">
+  <view class="post-fake" bind:tap="handleFakePost">
     <text>输入短评</text>
   </view>
   <view class="like-container">
-    <v-like bind:like="onLike" class="like" isLike="{{isLike}}" count="{{likeCount}}" />
+    <v-like bind:like="handleLike" class="like" isLike="{{isLike}}" count="{{likeCount}}" />
     <v-image-button class="share-btn" open-type="share">
-        <image slot="img" class="share" src="/images/icon/share.png"></image>
-      </v-image-button>
+      <image slot="img" class="share" src="/images/icon/share.png"></image>
+    </v-image-button>
   </view>
 </view>
 <view class="posting-container" hidden="{{!showPost}}">
   <view class="post-header">
     <text wx:if="{{comments.length > 0}}">{{'仅可点击标签+1'}}</text>
     <text wx:else>{{'暂无短评'}}</text>
-    <text class="cancel" bind:tap="onCancel">取消</text>
+    <text class="cancel" bind:tap="handleCancel">取消</text>
   </view>
   <view class="comment-container">
     <block wx:for="{{filter.limit(comments,3)}}" wx:key="content">
-      <v-tag tag-class="{{helper.highlight(index)}}" text="{{item.content}}" bind:tapping="onPost">
+      <v-tag
+        tag-class="{{helper.highlight(index)}}"
+        text="{{item.content}}"
+        bind:tapping="handlePost"
+      >
         <text class="num" slot="after">{{'+' + item.nums}}</text>
       </v-tag>
     </block>
   </view>
-  <input type="text" class="post" placeholder="短评最多12个字" bindconfirm="onPost" />
+  <input type="text" class="post" placeholder="短评最多12个字" bindconfirm="handlePost" />
 </view>
 
 <v-mask wx:if="{{showPost}}" />

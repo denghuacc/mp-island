@@ -8,7 +8,7 @@
     wx:if="{{!authorized}}"
     open-type="getUserInfo"
     class="avatar-position"
-    bind:getuserinfo="onGetUserInfo"
+    bind:getuserinfo="handleGetUserInfo"
   >
     <image slot="img" class="avatar" src="/images/my/my.png"></image>
   </v-image-button>
@@ -33,7 +33,7 @@
     <image class="headline" src="/images/my/like.png"></image>
     <view class="preview-container">
       <block wx:for="{{classics}}" wx:key="{{item.id}}">
-        <v-preview bind:tapping="goDetail" class="preview" classic="{{item}}" />
+        <v-preview bind:tapping="goToDetailPage" class="preview" classic="{{item}}" />
       </block>
     </view>
   </view>

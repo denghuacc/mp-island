@@ -7,13 +7,14 @@ const tips = {
 }
 
 class Http {
+  // 请求
   request({ url, data = {}, method = 'GET' }) {
     return new Promise((resolve, reject) => {
-      this._request(url, resolve, reject, data, method)
+      this._request(resolve, reject, url, data, method)
     })
   }
 
-  _request(url, resolve, reject, data = {}, method = 'GET', noRefetch = false) {
+  _request(resolve, reject, url, data = {}, method = 'GET', noRefetch = false) {
     wx.request({
       url: config.api_base_url + url,
       method: method,
@@ -29,7 +30,7 @@ class Http {
         } else {
           if (code === '403') {
             if (!noRefetch) {
-              this._refresh(url, resolve, reject, data, method)
+              this._refresh(resolve, reject, url, data, method)
             }
           } else {
             reject()
@@ -45,6 +46,7 @@ class Http {
     })
   }
 
+  // 错误提醒
   _show_error(error_code = 1) {
     const tip = tips[error_code]
     return wx.showToast({
@@ -54,12 +56,14 @@ class Http {
     })
   }
 
+  // Basic 验证
   _encode() {
     const token = wx.getStorageSync('token')
     const result = Base64.encode(token + ':')
     return 'Basic ' + result
   }
 
+  // 获取 token 后重新发生请求
   _refresh(...param) {
     const token = new Token()
     token.getTokenFromServer(token => {

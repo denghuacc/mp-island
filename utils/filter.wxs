@@ -1,4 +1,4 @@
-// 不能使用 ES6 语法
+// wxs 不支持 ES6 语法
 var format = function(text) {
   if (!text) {
     return

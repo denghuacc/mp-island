@@ -1,13 +1,10 @@
 // components/epsoide/index.js
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     index: {
       type: Number,
       value: 0,
-      observer: function(newVal, oldVal, changePath) {
+      observer(newVal, oldVal, changePath) {
         let val = newVal < 10 ? '0' + newVal : newVal
         this.setData({
           _index: val
@@ -16,9 +13,6 @@ Component({
     }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
     monthMap: [
       '一月',
@@ -39,20 +33,13 @@ Component({
     _index: ''
   },
 
-  lifetimes: {
-    attached() {
-      const date = new Date()
-      const year = date.getFullYear()
-      const month = date.getMonth()
-      this.setData({
-        year,
-        month: this.data.monthMap[month]
-      })
-    }
-  },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {}
+  attached() {
+    const date = new Date()
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    this.setData({
+      year,
+      month: this.data.monthMap[month]
+    })
+  }
 })

@@ -43,7 +43,7 @@ Component({
   },
 
   methods: {
-    async onLike(e) {
+    async handleLike(e) {
       const behavior = e.detail.behavior
       await likeModel.like(
         behavior,
@@ -52,11 +52,11 @@ Component({
       )
     },
 
-    async onPrevious() {
+    async handlePrevious() {
       await this._updateClassic('previous')
     },
 
-    async onNext() {
+    async handleNext() {
       await this._updateClassic('next')
     },
 

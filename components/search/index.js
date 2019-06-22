@@ -7,16 +7,10 @@ const keywordModel = new KeywordModel()
 const bookModel = new BookModel()
 
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     needMore: { type: Boolean, observer: 'loadMore' }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
     historyWords: [],
     hotWords: [],
@@ -35,15 +29,12 @@ Component({
     this.setData({ historyWords, hotWords: hotWords.data.hotKeywords })
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    onCancel() {
+    handleCancel() {
       this.triggerEvent('cancel')
     },
 
-    async goSearching(e) {
+    async goToSearching(e) {
       this.setData({ hasSearch: true })
 
       let keyword = e.detail.value || e.detail.text
@@ -70,15 +61,15 @@ Component({
 
     // 退出搜索界面（ hasSearch 为 false ）时需要重置一些属性
     // 再次进入搜索的时候才能正常搜索
-    // onCancel 再进来的时候会重新生成属性，所有可以不用重置
-    onDelete(e) {
+    // handleCancel 再进来的时候会重新生成属性，所有可以不用重置
+    handleDelete(e) {
       this.setData({
         hasSearch: false
       })
-      this.initializeData()
+      this._initializeData()
     },
 
-    initializeData() {
+    _initializeData() {
       this.setData({
         searchResult: [],
         keyword: '',

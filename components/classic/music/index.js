@@ -1,33 +1,23 @@
 // components/classic/music/index.js
-
 import { classicBehavior } from '../classic-behavior'
 
 const musicManager = wx.getBackgroundAudioManager()
 
 Component({
-  /**
-   * 行为
-   */
   behaviors: [classicBehavior],
   properties: {
     musicUrl: String,
     title: String
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
     playSrc: './images/player@play.png',
     pauseSrc: './images/player@pause.png',
     isPlay: false
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    onPlay() {
+    handlePlay() {
       if (!this.data.isPlay) {
         this.setData({
           isPlay: true
@@ -41,6 +31,7 @@ Component({
         musicManager.pause()
       }
     },
+
     _recoverStatus() {
       if (musicManager.paused) {
         this.setData({
@@ -59,6 +50,7 @@ Component({
         })
       }
     },
+
     _monitorSwitch() {
       musicManager.onPlay(() => {
         this._recoverStatus()
@@ -74,6 +66,7 @@ Component({
       })
     }
   },
+
   lifetimes: {
     attached() {
       this._recoverStatus()

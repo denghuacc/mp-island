@@ -1,8 +1,5 @@
 // components/like/index.js
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     isLike: {
       type: Boolean
@@ -16,19 +13,13 @@ Component({
     }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
     likePng: 'images/like.png',
     disLikePng: 'images/like@dis.png'
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    onLike() {
+    handleLike() {
       if (this.data.readOnly) {
         return
       }

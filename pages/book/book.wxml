@@ -1,7 +1,7 @@
 <!--pages/book/book.wxml-->
 <view class="container" wx:if="{{!showSearch}}">
   <view class="header">
-    <view class="box" bind:tap="goSearch">
+    <view class="box" bind:tap="goToSearch">
       <image src="/images/icon/search.png"></image>
       <text>搜索书籍</text>
     </view>
@@ -16,4 +16,4 @@
   </view>
 </view>
 
-<v-search wx:if="{{showSearch}}" bind:cancel="onCancel" needMore="{{needMore}}" />
+<v-search wx:if="{{showSearch}}" bind:cancel="handleCancel" needMore="{{needMore}}" />

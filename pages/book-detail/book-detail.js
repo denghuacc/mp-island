@@ -7,9 +7,6 @@ const bookModel = new BookModel()
 const likeModel = new LikeModel()
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     comments: [],
     book: {},
@@ -18,9 +15,6 @@ Page({
     showPost: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   async onLoad(options) {
     const bookId = options.bookId
     // 串行请求
@@ -45,20 +39,22 @@ Page({
       likeCount: result[2].data.fav_nums
     })
   },
-  async onLike(e) {
+
+
+  async handleLike(e) {
     const behavior = e.detail.behavior
     await likeModel.like(behavior, this.data.book.id, 400)
   },
 
-  onFakePost() {
+  handleFakePost() {
     this.setData({ showPost: true })
   },
 
-  onCancel() {
+  handleCancel() {
     this.setData({ showPost: false })
   },
 
-  async onPost(e) {
+  async handlePost(e) {
     const comment = e.detail.text || e.detail.value
     if (!comment) {
       return

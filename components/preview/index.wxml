@@ -1,5 +1,5 @@
 <!--components/preview/index.wxml-->
-<view class="container" bind:tap="onTap">
+<view class="container" bind:tap="handleTap">
   <view class="head">
     <v-tag text="{{typeText}}" tag-class="tag" />
     <v-like class="like" read-only="{{true}}" isLike="{{true}}" count="{{classic.fav_nums}}" />
