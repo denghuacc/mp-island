@@ -1,4 +1,5 @@
 <!--pages/classic-detail/classic-detail.wxml-->
+
 <view>
-  <v-classic need-navi="{{false}}" cid="{{cid}}" type="{{type}}" />
+  <c-classic need-navi="{{false}}" cid="{{cid}}" type="{{type}}" />
 </view>

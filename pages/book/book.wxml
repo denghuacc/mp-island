@@ -1,4 +1,5 @@
-<!--pages/book/book.wxml-->
+<!-- pages/book/book.wxml -->
+
 <view class="container" wx:if="{{!showSearch}}">
   <view class="header">
     <view class="box" bind:tap="goToSearch">
@@ -10,10 +11,10 @@
     <image class="header-img" src="/images/book/quality.png"></image>
     <view class="book-container">
       <block wx:for="{{books}}" wx:key="id">
-        <v-book book="{{item}}" />
+        <c-book book="{{item}}" />
       </block>
     </view>
   </view>
 </view>
 
-<v-search wx:if="{{showSearch}}" bind:cancel="handleCancel" needMore="{{needMore}}" />
+<c-search wx:if="{{showSearch}}" bind:cancel="handleCancel" needMore="{{needMore}}" />

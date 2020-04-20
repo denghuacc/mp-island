@@ -1,4 +1,5 @@
 // components/classic/music/index.js
+
 import { classicBehavior } from '../classic-behavior'
 
 const musicManager = wx.getBackgroundAudioManager()

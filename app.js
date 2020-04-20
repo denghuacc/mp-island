@@ -1,8 +1,8 @@
-import { Token } from './models/token'
+import { createToken } from './models/token'
 
 App({
-  onLaunch: function() {
-    const token = new Token()
+  onLaunch: function () {
+    const token = createToken()
     token.verify()
   }
 })

@@ -1,4 +1,5 @@
 <!--components/search/index.wxml-->
+
 <view>
   <view class="header">
     <view class="search-container">
@@ -25,7 +26,7 @@
       </view>
       <view class="tags">
         <block wx:for="{{historyWords}}" wx:key="item">
-          <v-tag text="{{item}}" bind:tapping="goToSearching" />
+          <c-tag text="{{item}}" bind:tapping="goToSearching" />
         </block>
       </view>
     </view>
@@ -36,7 +37,7 @@
       </view>
       <view class="tags">
         <block wx:for="{{hotWords}}" wx:key="item">
-          <v-tag text="{{item}}" bind:tapping="goToSearching" />
+          <c-tag text="{{item}}" bind:tapping="goToSearching" />
         </block>
       </view>
     </view>
@@ -44,12 +45,12 @@
 
   <view wx:if="{{hasSearch}}" class="books-container">
     <block wx:for="{{searchResult}}" wx:key="id">
-      <v-book book="{{item}}" class="book" />
+      <c-book book="{{item}}" class="book" />
     </block>
   </view>
 
-  <v-loading class="loading-center" wx:if="{{showLoadingCenter}}" />
-  <v-loading class="loading" wx:if="{{!canFetch}}" />
+  <c-loading class="loading-center" wx:if="{{showLoadingCenter}}" />
+  <c-loading class="loading" wx:if="{{!canFetch}}" />
 
   <text class="empty-tip" wx:if="{{noResult}}">没有搜索到相关书籍</text>
 </view>

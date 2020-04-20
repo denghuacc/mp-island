@@ -1,4 +1,4 @@
-import { Http } from '../utils/http'
+import { Http } from './http'
 
 class LikeModel extends Http {
   like(behavior, artId, category) {
@@ -19,4 +19,6 @@ class LikeModel extends Http {
   }
 }
 
-export { LikeModel }
+export function createLikeModel() {
+  return new LikeModel()
+}

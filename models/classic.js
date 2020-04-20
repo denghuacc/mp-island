@@ -1,4 +1,4 @@
-import { Http } from '../utils/http'
+import { Http } from './http'
 
 class ClassicModel extends Http {
   async getLatest() {
@@ -58,4 +58,6 @@ class ClassicModel extends Http {
   }
 }
 
-export { ClassicModel }
+export function createClassicModel() {
+  return new ClassicModel()
+}

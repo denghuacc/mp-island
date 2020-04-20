@@ -1,10 +1,10 @@
 // pages/book-detail/book-detail.js
 
-import { BookModel } from '../../models/book'
-import { LikeModel } from '../../models/like'
+import { createBookModel } from '../../models/book'
+import { createLikeModel } from '../../models/like'
 
-const bookModel = new BookModel()
-const likeModel = new LikeModel()
+const bookModel = createBookModel()
+const likeModel = createLikeModel()
 
 Page({
   data: {
@@ -39,7 +39,6 @@ Page({
       likeCount: result[2].data.fav_nums
     })
   },
-
 
   async handleLike(e) {
     const behavior = e.detail.behavior

@@ -1,8 +1,8 @@
 // pages/book/book.js
 
-import { BookModel } from '../../models/book'
+import { createBookModel } from '../../models/book'
 
-const bookModel = new BookModel()
+const bookModel = createBookModel()
 
 Page({
   data: {
@@ -13,9 +13,7 @@ Page({
 
   async onLoad(options) {
     const bookList = await bookModel.getHotBookList()
-    this.setData({
-      books: bookList.data
-    })
+    this.setData({ books: bookList.data })
   },
 
   onReachBottom() {

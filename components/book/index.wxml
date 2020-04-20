@@ -1,4 +1,5 @@
 <!--components/book/index.wxml-->
+
 <view class="container" bind:tap="goToDetailPage">
   <image src="{{book.image}}"></image>
   <view class="description">

@@ -1,4 +1,5 @@
 // components/navi/index.js
+
 Component({
   properties: {
     title: String,

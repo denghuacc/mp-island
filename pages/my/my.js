@@ -1,9 +1,10 @@
 // pages/my/my.js
-import { BookModel } from '../../models/book'
-import { ClassicModel } from '../../models/classic'
 
-const bookModel = new BookModel()
-const classicModel = new ClassicModel()
+import { createBookModel } from '../../models/book'
+import { createClassicModel } from '../../models/classic'
+
+const bookModel = createBookModel()
+const classicModel = createClassicModel()
 
 Page({
   data: {

@@ -1,4 +1,5 @@
 /* components/loading/index.wxss */
+
 .container {
   width: 40rpx;
   height: 40rpx;

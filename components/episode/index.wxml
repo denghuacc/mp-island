@@ -1,3 +1,5 @@
+<!-- components/episode/index.wxml -->
+
 <view class="container">
   <view class="index-container">
     <text class="plain">NO.</text>

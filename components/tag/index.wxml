@@ -1,4 +1,5 @@
 <!--components/tag/index.wxml-->
+
 <view class="container tag-class" bind:tap="handleTap">
   <slot name="before"></slot>
   <text>{{text}}</text>

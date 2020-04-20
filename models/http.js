@@ -6,7 +6,7 @@ const tips = {
   1: '抱歉，出现了一个错误！'
 }
 
-class Http {
+export class Http {
   // 请求
   request({ url, data = {}, method = 'GET' }) {
     return new Promise((resolve, reject) => {
@@ -71,5 +71,3 @@ class Http {
     })
   }
 }
-
-export { Http }

@@ -1,4 +1,5 @@
 // components/like/index.js
+
 Component({
   properties: {
     isLike: {

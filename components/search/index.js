@@ -1,10 +1,10 @@
 // components/search/index.js
 
-import { KeywordModel } from '../../models/keyword'
-import { BookModel } from '../../models/book'
+import { createKeywordModel } from '../../models/keyword'
+import { createBookModel } from '../../models/book'
 
-const keywordModel = new KeywordModel()
-const bookModel = new BookModel()
+const keywordModel = createKeywordModel()
+const bookModel = createBookModel()
 
 Component({
   properties: {

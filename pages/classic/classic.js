@@ -1,8 +1,10 @@
-import { ClassicModel } from '../../models/classic'
-import { LikeModel } from '../../models/like'
+// pages/classic/classic.js
 
-const likeModel = new LikeModel()
-const classicModel = new ClassicModel()
+import { createClassicModel } from '../../models/classic'
+import { createLikeModel } from '../../models/like'
+
+const likeModel = createLikeModel()
+const classicModel = createClassicModel()
 
 Component({
   properties: {

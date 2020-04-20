@@ -1,3 +1,5 @@
+/* components/navi/index.wxss */
+
 .container {
   width: 600rpx;
   height: 80rpx;

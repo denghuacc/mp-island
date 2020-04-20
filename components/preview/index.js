@@ -1,4 +1,5 @@
 // components/preview/index.js
+
 Component({
   properties: {
     classic: {

@@ -1,4 +1,5 @@
-// components/epsoide/index.js
+// components/episode/index.js
+
 Component({
   properties: {
     index: {

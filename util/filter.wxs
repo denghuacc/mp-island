@@ -1,5 +1,5 @@
 // wxs 不支持 ES6 语法
-var format = function(text) {
+var format = function (text) {
   if (!text) {
     return
   }
@@ -8,7 +8,7 @@ var format = function(text) {
   return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
 }
 
-var limit = function(arr, length) {
+var limit = function (arr, length) {
   return arr.slice(0, length)
 }
 

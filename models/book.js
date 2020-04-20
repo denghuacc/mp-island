@@ -1,4 +1,4 @@
-import { Http } from '../utils/http'
+import { Http } from './http'
 
 class BookModel extends Http {
   getHotBookList() {
@@ -31,7 +31,7 @@ class BookModel extends Http {
   }
 
   getMyFavoriteBookCount() {
-    return this.request({url: '/book/favor/count'})
+    return this.request({ url: '/book/favor/count' })
   }
 
   getBookLikeStatus(bookId) {
@@ -39,7 +39,6 @@ class BookModel extends Http {
       url: `/book/${bookId}/favor`
     })
   }
-
 
   searchBook(keyword, start) {
     return this.request({
@@ -52,4 +51,6 @@ class BookModel extends Http {
   }
 }
 
-export { BookModel }
+export function createBookModel() {
+  return new BookModel()
+}

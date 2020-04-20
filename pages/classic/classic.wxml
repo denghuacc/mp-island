@@ -1,31 +1,33 @@
+<!-- pages/classic/classic.wxml -->
+
 <view class="container">
   <view class="header">
-    <v-episode class="epsoide" index="{{classic.index}}" />
+    <c-episode class="epsoide" index="{{classic.index}}" />
     <view class="like-container">
-      <v-like class="like" isLike="{{likeStatus}}" count="{{likeCount}}" bind:like="handleLike" />
-      <v-image-button class="share-btn" open-type="share">
+      <c-like class="like" isLike="{{likeStatus}}" count="{{likeCount}}" bind:like="handleLike" />
+      <c-image-button class="share-btn" open-type="share">
         <image slot="img" class="share" src="/images/icon/share.png"></image>
-      </v-image-button>
+      </c-image-button>
     </view>
   </view>
-  <v-movie
+  <c-movie
     hidden="{{classic.type !== 100}}"
     imgSrc="{{classic.image}}"
     content="{{classic.content}}"
   />
-  <v-music
+  <c-music
     wx:if="{{classic.type === 200}}"
     imgSrc="{{classic.image}}"
     content="{{classic.content}}"
     musicUrl="{{classic.url}}"
     title="{{classic.title}}"
   />
-  <v-essay
+  <c-essay
     hidden="{{classic.type !== 300}}"
     imgSrc="{{classic.image}}"
     content="{{classic.content}}"
   />
-  <v-navi
+  <c-navi
     class="navi"
     wx:if="{{needNavi}}"
     isFirst="{{isFirst}}"

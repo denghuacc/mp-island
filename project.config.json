@@ -23,7 +23,7 @@
 		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.1",
+	"libVersion": "2.10.4",
 	"appid": "wx3a0ca6652cc489dd",
 	"projectname": "island",
 	"debugOptions": {

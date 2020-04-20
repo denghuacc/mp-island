@@ -54,4 +54,6 @@ class Token {
   }
 }
 
-export { Token }
+export function createToken() {
+  return new Token()
+}

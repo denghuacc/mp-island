@@ -1,4 +1,4 @@
-import { Http } from '../utils/http'
+import { Http } from './http'
 
 class KeywordModel extends Http {
   key = 'searchHistory'
@@ -30,4 +30,6 @@ class KeywordModel extends Http {
   }
 }
 
-export { KeywordModel }
+export function createKeywordModel() {
+  return new KeywordModel()
+}

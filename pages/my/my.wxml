@@ -1,17 +1,18 @@
 <!--pages/my/my.wxml-->
+
 <view class="container">
   <image src="/images/my/my@bg.png" class="bg"></image>
 
   <!-- <open-data type="userAvatarUrl" class="avatar avatar-position" /> -->
 
-  <v-image-button
+  <c-image-button
     wx:if="{{!authorized}}"
     open-type="getUserInfo"
     class="avatar-position"
     bind:getuserinfo="handleGetUserInfo"
   >
     <image slot="img" class="avatar" src="/images/my/my.png"></image>
-  </v-image-button>
+  </c-image-button>
 
   <view class="avatar-container avatar-position" wx:else>
     <image src="{{userInfo.avatarUrl}}" class="avatar" />
@@ -33,7 +34,7 @@
     <image class="headline" src="/images/my/like.png"></image>
     <view class="preview-container">
       <block wx:for="{{classics}}" wx:key="{{item.id}}">
-        <v-preview bind:tapping="goToDetailPage" class="preview" classic="{{item}}" />
+        <c-preview bind:tapping="goToDetailPage" class="preview" classic="{{item}}" />
       </block>
     </view>
   </view>

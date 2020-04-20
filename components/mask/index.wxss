@@ -1,4 +1,5 @@
 /* components/mask/index.wxss */
+
 .container {
   background-color: #000;
   position: fixed;

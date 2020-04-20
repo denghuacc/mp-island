@@ -1,3 +1,5 @@
+/* components/episode/index.wxss */
+
 .container {
   height: 60rpx;
   display: inline-flex;

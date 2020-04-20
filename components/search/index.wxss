@@ -1,3 +1,5 @@
+/* components/search/index.wxss */
+
 .container {
   display: flex;
   flex-direction: column;
@@ -83,7 +85,7 @@
   align-items: center;
 }
 
-.books-container v-book {
+.books-container c-book {
   margin-bottom: 25rpx;
 }
 
@@ -136,7 +138,7 @@
   width: 630rpx;
 }
 
-.tags v-tag {
+.tags c-tag {
   margin-right: 20rpx;
   margin-bottom: 20rpx;
 }

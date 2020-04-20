@@ -1,3 +1,5 @@
+<!-- components/navi/index.wxml -->
+
 <view class="container">
   <image bind:tap="handleLeft" class="icon" src="{{isLatest ? disLeftSrc: leftSrc}}" />
   <text class="title">{{title}}</text>

@@ -1,4 +1,5 @@
 // components/image-button/index.js
+
 Component({
   options: {
     multipleSlots: true

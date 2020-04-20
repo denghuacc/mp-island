@@ -1,4 +1,5 @@
 // components/tag/index.js
+
 Component({
   // 选项
   options: {
